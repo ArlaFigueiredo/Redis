@@ -1,0 +1,85 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    container_name: api
+    ports:
+      - "8000:5000"
+    networks:
+      - services-network
+  jupyter_lab:
+    image: jupyter/minimal-notebook
+    container_name: jupyter_lab
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - services-network
+  redis:
+    image: redis:latest
+    container_name: redis_mem
+    ports:
+      - "6379:6379"
+    networks:
+      - services-network
+  redis-master:
+    image: redis:latest
+    container_name: master
+    ports:
+      - "6380:6379"
+    command: "redis-server --appendonly yes"
+    volumes:
+        - redis_data:/data
+    networks:
+      - services-network
+  redis-slave:
+    image: redis:latest
+    container_name: slave
+    ports:
+      - "6381:6379"
+    command: "redis-server --slaveof master 6379 --appendonly yes"
+    volumes:
+        - redis_data:/data
+    depends_on:
+      - redis-master
+    networks:
+      - services-network
+  redis-sentinel:
+    build:
+      context: ./redis-sentinel
+    container_name: sentinel
+    depends_on:
+      - redis-master
+    ports:
+      - "26379:26379"
+    networks:
+      - services-network
+  redis-sentinel2:
+    build:
+      context: ./redis-sentinel
+    container_name: sentinel2
+    depends_on:
+      - redis-master
+    ports:
+      - "26380:26379"
+    networks:
+      - services-network
+  redis_sentinel3:
+    build:
+      context: ./redis-sentinel
+    container_name: sentinel3
+    depends_on:
+      - redis-master
+    ports:
+      - "26381:26379"
+    networks:
+      - services-network
+
+networks:
+  services-network:
+    driver: bridge
+
+volumes:
+  redis_data:
