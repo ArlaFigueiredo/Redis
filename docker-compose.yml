@@ -49,7 +49,7 @@ services:
       - services-network
   redis-sentinel:
     build:
-      context: ./redis-sentinel
+      context: ./redis_sentinel
     container_name: sentinel
     depends_on:
       - redis-master
@@ -59,7 +59,7 @@ services:
       - services-network
   redis-sentinel2:
     build:
-      context: ./redis-sentinel
+      context: ./redis_sentinel
     container_name: sentinel2
     depends_on:
       - redis-master
@@ -69,7 +69,7 @@ services:
       - services-network
   redis_sentinel3:
     build:
-      context: ./redis-sentinel
+      context: ./redis_sentinel
     container_name: sentinel3
     depends_on:
       - redis-master
