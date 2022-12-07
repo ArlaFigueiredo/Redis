@@ -2,34 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Github Profile</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
-<body style="
-    background-color: #14213d;
-">
-    <div style="
-    text-align-last: center;
-">
-    <div style="
-    margin-left: 50;
-">
-        <img src="{{data.user_data.avatar_url}}" alt="avatar" width="250" height="250" style="
-    border: 15px solid #fca311;
-    border-radius: 25px;
-">
-    </div>
-    <h1 style="
-    color: #eae2b7;
-"><b>BIO:</b>{{data.user_data.bio if data.user_data.bio else 'Você não possui bio!' }}</h1>
-    <h1 style="
-    color: #eae2b7;
-"><b>Repositórios Públicos:</b>{{ data.user_data.public_repos }}</h1>
-        <h1 style="
-    color: #eae2b7;
-"><b>Seguidores:</b>{{ data.user_data.followers }}</h1>
-        <h1 style="
-    color: #eae2b7;
-"><b>Seguindo:</b>{{ data.user_data.following }}</h1>
-    </div>
+<body>
+    <section class="hero is-large is-danger">
+      <div class="hero-body">
+        <p class="title">
+          Apresentação Redis
+        </p>
+        <p class="subtitle">
+          Você já atualizou essa página <span class="tag is-white">{{ count }}</span> vezes.
+        </p>
+      </div>
+    </section>
 </body>
 </html>

@@ -47,7 +47,7 @@ def get_github_user(username: str) -> bytes:
     api_response_content = json.loads(response_api.content.decode('utf-8'))
 
     # Cria objeto de resposta, salvando a data da ultima vez que o registro foi atualizado
-    user_dict = {"updated_at": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), "user_data": api_response_content}
+    user_dict = {"updated_at": datetime.now().strftime("%d/%m/%Y, %H:%M:%S"), "user_data": api_response_content}
 
     return json.dumps(user_dict, indent=2).encode('utf-8')
 
@@ -55,7 +55,7 @@ def get_github_user(username: str) -> bytes:
 @app.route('/', methods=['GET'])
 def home():
     count = get_hit_count()
-    return f'Hello World! I have been seen {count} times.'
+    return render_template('index.html', count=count)
 
 
 @app.route('/mem/github_user', methods=['GET'])
@@ -75,7 +75,7 @@ def mem_github_user():
 
     data = json.loads(mem_cache.get(username))
 
-    return render_template('index.html', data=data)
+    return render_template('github_page.html', data=data)
 
 
 @app.route('/github_user', methods=['GET'])
@@ -95,7 +95,7 @@ def github_user():
 
     data = json.loads(persistence_cache.get(username))
 
-    return render_template('index.html', data=data)
+    return render_template('github_page.html', data=data)
 
 
 @app.route('/clear_cache', methods=['GET', 'POST'])
@@ -125,7 +125,7 @@ def get_data():
         else:
             return response
 
-    return "Erro: All sentinels are down."
+    return "Error: Os serviços não estão respondendo."
 
 
 @app.route('/set_data', methods=['GET', 'POST'])
