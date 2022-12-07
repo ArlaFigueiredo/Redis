@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Github Profile</title>
 </head>
+
 <body style="
     background-color: #DC143C;
 ">
@@ -29,19 +31,24 @@
 
         <h1 style="
         color: #eae2b7;
-        "><span style="font-style: italic;">{{ data.user_data.bio if data.user_data.bio else 'Você não possui bio!' }}</span></h1>
+        "><span style="font-style: italic;">{{ data.user_data.bio if data.user_data.bio else 'Não possui bio!'
+                }}</span></h1>
 
         <h1 style="
         color: #eae2b7;
-        "><b>Repositórios Públicos:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{ data.user_data.public_repos }}</span></h1>
+        "><b>Repositórios Públicos:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{
+                data.user_data.public_repos }}</span></h1>
 
         <h1 style="
         color: #eae2b7;
-        "><b >Seguidores:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{ data.user_data.followers }}</span></h1>
+        "><b>Seguidores:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{ data.user_data.followers
+                }}</span></h1>
 
         <h1 style="
         color: #eae2b7;
-        "><b>Seguindo:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{ data.user_data.following }}</span></h1>
+        "><b>Seguindo:</b> <span style="background-color: #FFFFF0; color:#DC143C">{{ data.user_data.following }}</span>
+        </h1>
     </div>
 </body>
+
 </html>
