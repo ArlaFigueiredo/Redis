@@ -119,13 +119,13 @@ def get_data():
         try:
             sentinel = Sentinel([(sentinel_name, SENTINEL_PORT)], socket_timeout=0.1)
             master = sentinel.master_for(SENTINEL_MASTER_GROUP, socket_timeout=0.1)
-            response = master.get(search_key)
+            data = master.get(search_key)
         except MasterNotFoundError:
             pass
         else:
-            return response
+            return render_template('get_data.html', key=search_key, value=data)
 
-    return "Error: Os serviços não estão respondendo."
+    return render_template('error.html')
 
 
 @app.route('/set_data', methods=['GET', 'POST'])
@@ -142,9 +142,9 @@ def set_data():
         except MasterNotFoundError:
             pass
         else:
-            return "OK"
+            return render_template('set_data.html', key=key, value=value)
 
-    return "Erro: All sentinels are down."
+    return render_template('error.html')
 
 
 if __name__ == "__main__":
