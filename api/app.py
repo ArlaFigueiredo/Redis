@@ -5,7 +5,7 @@ import json
 
 from redis import Sentinel, Redis
 from redis.sentinel import MasterNotFoundError
-from flask import Flask, request
+from flask import Flask, request, render_template
 from datetime import datetime
 
 # Configurações intancias disponiveis dos sentinelas
@@ -73,7 +73,9 @@ def mem_github_user():
         user_data = get_github_user(username)
         mem_cache.set(name=username, value=user_data, ex=expire_seconds)
 
-    return mem_cache.get(username)
+    data = json.loads(mem_cache.get(username))
+
+    return render_template('index.html', data=data)
 
 
 @app.route('/github_user', methods=['GET'])
@@ -91,7 +93,9 @@ def github_user():
         user_data = get_github_user(username)
         persistence_cache.set(name=username, value=user_data, ex=expire_seconds)
 
-    return persistence_cache.get(username)
+    data = json.loads(persistence_cache.get(username))
+
+    return render_template('index.html', data=data)
 
 
 @app.route('/clear_cache', methods=['GET', 'POST'])

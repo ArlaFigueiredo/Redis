@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Github Profile</title>
+</head>
+<body style="
+    background-color: #14213d;
+">
+    <div style="
+    text-align-last: center;
+">
+    <div style="
+    margin-left: 50;
+">
+        <img src="{{data.user_data.avatar_url}}" alt="avatar" width="250" height="250" style="
+    border: 15px solid #fca311;
+    border-radius: 25px;
+">
+    </div>
+    <h1 style="
+    color: #eae2b7;
+"><b>BIO:</b>{{data.user_data.bio if data.user_data.bio else 'Escreva sua Bio!' }}</h1>
+    </div>
+</body>
+</html>
