@@ -20,7 +20,16 @@
     </div>
     <h1 style="
     color: #eae2b7;
-"><b>BIO:</b>{{data.user_data.bio if data.user_data.bio else 'Escreva sua Bio!' }}</h1>
+"><b>BIO:</b>{{data.user_data.bio if data.user_data.bio else 'Você não possui bio!' }}</h1>
+    <h1 style="
+    color: #eae2b7;
+"><b>Repositórios Públicos:</b>{{ data.user_data.public_repos }}</h1>
+        <h1 style="
+    color: #eae2b7;
+"><b>Seguidores:</b>{{ data.user_data.followers }}</h1>
+        <h1 style="
+    color: #eae2b7;
+"><b>Seguindo:</b>{{ data.user_data.following }}</h1>
     </div>
 </body>
 </html>
