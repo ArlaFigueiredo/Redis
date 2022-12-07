@@ -18,7 +18,7 @@ def produce():
 
         r.publish('trocadilhos', json.dumps(data[option], indent=2).encode('utf-8'))
 
-        print("Message has been send.")
+        print("Um novo trocadilho foi publicado ...")
 
         time.sleep(10)
 

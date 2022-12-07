@@ -15,16 +15,15 @@ def consume():
         message = client.get_message()
 
         if not message or type(message['data']) == int:
-            print("Not messages yet...")
+            print("Aguardando novos trocadilhos ...")
             time.sleep(2)
             continue
 
         # Decodifica mensagem
         decoded_message = json.loads(message['data'].decode('utf-8'))
 
-        print("< Trocadilho >")
+        print("\n< Trocadilho >")
         print(decoded_message["pergunta"])
-        print("\n")
         print(f"R: {decoded_message['resposta']}\n")
 
 
